@@ -1,6 +1,6 @@
 # 附录 E：快变事实核验表
 
-> `verified_at`: 2026-07-10 · `expires_at`: 2026-08-09 · `ttl_days`: 30
+> `verified_at`: 2026-07-28 · `expires_at`: 2026-08-27 · `ttl_days`: 30
 
 本表是模型名称、可用性、上下文窗口、价格、协议和运行时等高波动事实的单一快照。正文只说明稳定的选型方法；需要具体型号或数值时链接到这里。到期后必须重新打开官方入口核验，不得只改日期。
 
@@ -11,7 +11,7 @@
 | 厂商 | 当前官方状态 | 上下文工程含义 | 官方入口 |
 | --- | --- | --- | --- |
 | OpenAI | 当前模型目录将 GPT-5.6 Sol 列为复杂推理和编码旗舰；GPT-5.6 Terra 用于平衡智能与成本，GPT-5.6 Luna 面向成本敏感的高吞吐工作负载。2026-07-09 的 API changelog 记录三者已发布到 Responses、Chat Completions 和 Batch API。GPT-5.3-Codex 的上下文窗口为 400K，最大输出为 128K。 | 按 Sol、Terra、Luna 的能力与成本边界选型，并用具体模型 ID、账号层级和实际区域做上线前回归；编码智能体仍需单独评估 GPT-5.3-Codex。 | [OpenAI Models](https://developers.openai.com/api/docs/models), [GPT-5.6 Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol), [GPT-5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra), [GPT-5.6 Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna), [API changelog](https://developers.openai.com/api/docs/changelog), [GPT-5.3-Codex](https://developers.openai.com/api/docs/models/gpt-5.3-codex) |
-| Anthropic | Claude Fable 5 已恢复全球访问；Claude Mythos 5 非普遍可用，仅通过 Project Glasswing 向获批客户受限开放；Claude Sonnet 5 已面向所有 Claude 套餐和 API 发布。 | 访问状态必须和能力规格同时核验；不得沿用已撤销的暂停公告，也不能把 Mythos 5 写成全面可用。 | [Claude Models](https://platform.claude.com/docs/en/about-claude/models/overview), [Fable 5 access restored](https://www.anthropic.com/news/redeploying-fable-5), [Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5), [Claude context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows) |
+| Anthropic | Claude Fable 5 已恢复全球访问，官方称其为「能力最强的广泛发布模型」；Claude Mythos 5 非普遍可用，仅通过 Project Glasswing 向获批客户受限开放；Claude Sonnet 5 已面向所有 Claude 套餐和 API 发布。**Claude Opus 5（`claude-opus-5`）已于 2026-07-24 发布**，官方模型页把它列为「不确定选哪个时的起点」（面向复杂智能体编码与企业场景，$5/$25、1M 上下文、128K 输出）。同一页已把 **Opus 4.8、Opus 4.7、Opus 4.6 与 Sonnet 4.6 移入 Legacy 区间**（仍可用，但建议迁移）；Haiku 4.5 仍属当前模型，不在该区间内。 | 访问状态必须和能力规格同时核验；不得沿用已撤销的暂停公告，也不能把 Mythos 5 写成全面可用；**也不要再把 Opus 4.8 写成当前旗舰**——它的价格和窗口没变，变的是它在官方目录中的位置。 | [Claude Models](https://platform.claude.com/docs/en/about-claude/models/overview), [Fable 5 access restored](https://www.anthropic.com/news/redeploying-fable-5), [Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5), [Claude context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows) |
 | Google | Gemini 3.5 Flash 使用稳定模型 ID `gemini-3.5-flash`，输入上限为 1,048,576 tokens，输出上限为 65,536 tokens。 | 固定稳定模型 ID，并在迁移时重新检查 token limits、弃用状态和区域可用性。 | [Gemini 3.5 Flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash), [Gemini API changelog](https://ai.google.dev/gemini-api/docs/changelog) |
 
 ## E.2 冲突记录

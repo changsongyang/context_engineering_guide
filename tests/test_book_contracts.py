@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import tempfile
 import unittest
 from datetime import date
@@ -67,8 +68,8 @@ class VolatileFactsTests(unittest.TestCase):
     def test_repository_snapshot_tracks_current_catalog_and_resolved_openai_transition(self):
         text = LEDGER.read_text(encoding="utf-8")
         for marker in (
-            "`verified_at`: 2026-07-10",
-            "`expires_at`: 2026-08-09",
+            "`verified_at`: 2026-07-28",
+            "`expires_at`: 2026-08-27",
             "`ttl_days`: 30",
             "id=openai-models status=current",
             "id=openai-gpt-5-6-availability status=resolved-conflict",
@@ -78,6 +79,7 @@ class VolatileFactsTests(unittest.TestCase):
             "GPT-5.3-Codex",
             "Claude Fable 5",
             "Claude Sonnet 5",
+            "Claude Opus 5",
             "Gemini 3.5 Flash",
             "https://developers.openai.com/api/docs/models",
             "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
@@ -100,7 +102,7 @@ class VolatileFactsTests(unittest.TestCase):
             "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
         ):
             self.assertIn(current_source, current_snapshot)
-        for stale_claim in ("推荐生产旗舰模型 GPT-5.5", "受信合作方开放的 preview"):
+        for stale_claim in ("推荐生产旗舰模型 GPT-5.5", "受信合作方开放的 preview", "Opus 4.8 是当前旗舰"):
             self.assertNotIn(stale_claim, current_snapshot)
         conflict_record = text.split("## E.2 冲突记录", 1)[1].split("## E.3 其他快变事实入口", 1)[0]
         for transition_evidence in (
@@ -113,7 +115,13 @@ class VolatileFactsTests(unittest.TestCase):
             "取代",
         ):
             self.assertIn(transition_evidence, conflict_record)
-        self.assertEqual(self.check(LEDGER, date(2026, 7, 10)), [])
+        # Check the real ledger as of its OWN verified_at rather than a hardcoded
+        # date. This line used to pin 2026-07-10, which meant every legitimate
+        # ledger refresh failed here with "verified_at is in the future" — a third
+        # hidden date pin on top of the two in the marker list above.
+        stamped = re.search(r"`verified_at`:\s*(\d{4})-(\d{2})-(\d{2})", text)
+        self.assertIsNotNone(stamped, "ledger header must carry verified_at")
+        self.assertEqual(self.check(LEDGER, date(*(int(g) for g in stamped.groups()))), [])
 
     def test_mythos_access_is_current_across_chapters_and_keeps_restoration_history(self):
         current_surfaces = {
