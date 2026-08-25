@@ -8,20 +8,20 @@
 
 ### OpenAI
 
-- **文档首页**：[OpenAI Docs](https://platform.openai.com/docs)
-- **提示词工程指南**：[OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
-- **函数调用**：[OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
+- **文档首页**：[OpenAI Docs](https://developers.openai.com/api/docs)
+- **提示词工程指南**：[OpenAI Prompt Engineering Guide](https://developers.openai.com/api/docs/guides/prompt-engineering)
+- **函数调用**：[OpenAI Function Calling Guide](https://developers.openai.com/api/docs/guides/function-calling)
 
 ### Anthropic
 
-- **Claude 文档**：[Anthropic Docs](https://docs.anthropic.com)
-- **提示词库**：[Anthropic Prompt Library](https://docs.anthropic.com/en/prompt-library)
+- **Claude 文档**：[Anthropic Docs](https://platform.claude.com/docs/en/home)
+- **提示词最佳实践**：[Claude Prompting Best Practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)（原 Prompt Library 页面已下线，官方入口改为本页）
 - **Claude 系统提示词指南**
 
 ### Google
 
-- **Gemini API 文档**：[Google AI Docs](https://ai.google.dev/docs)
-- **Vertex AI 文档**：[Vertex AI Docs](https://cloud.google.com/vertex-ai/docs)
+- **Gemini API 文档**：[Google AI Docs](https://ai.google.dev/gemini-api/docs)
+- **Vertex AI 文档**（现名 Gemini Enterprise Agent Platform）：[Agent Platform Docs](https://docs.cloud.google.com/gemini-enterprise-agent-platform)
 
 ---
 
@@ -32,7 +32,7 @@
 - **OpenAI Blog**：[官方博客](https://openai.com/blog)
 - **Anthropic Research**：[研究主页](https://www.anthropic.com/research)
 - **Anthropic Engineering Blog**：[工程博客](https://www.anthropic.com/engineering) ⭐ *上下文工程核心参考*
-- **Google AI Blog**：[官方博客](https://blog.research.google)
+- **Google AI Blog**：[官方博客](https://research.google/blog/)
 
 ### 上下文工程专题文章
 
@@ -66,7 +66,7 @@
 ### 推荐阅读平台
 
 - **arXiv**：[主页](https://arxiv.org)
-- **Papers with Code**：[主页](https://paperswithcode.com)
+- **Hugging Face Papers**：[主页](https://huggingface.co/papers)（Papers with Code 已于 2025 年 7 月停止运营，原域名跳转至此）
 - **Semantic Scholar**：[主页](https://semanticscholar.org)
 
 ---
