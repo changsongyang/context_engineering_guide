@@ -67,10 +67,16 @@ class VolatileFactsTests(unittest.TestCase):
 
     def test_repository_snapshot_tracks_current_catalog_and_resolved_openai_transition(self):
         text = LEDGER.read_text(encoding="utf-8")
+        # The header dates are deliberately NOT pinned to literals here: pinning
+        # them turned every legitimate ledger refresh into a test failure. Assert
+        # the header *shape* instead, and let check_volatile_facts() below own the
+        # verified_at/expires_at/ttl arithmetic.
+        self.assertRegex(
+            text,
+            r"`verified_at`: \d{4}-\d{2}-\d{2} · `expires_at`: \d{4}-\d{2}-\d{2} · `ttl_days`: 30",
+            "ledger header must carry a verified_at · expires_at · ttl_days: 30 triple",
+        )
         for marker in (
-            "`verified_at`: 2026-07-28",
-            "`expires_at`: 2026-08-27",
-            "`ttl_days`: 30",
             "id=openai-models status=current",
             "id=openai-gpt-5-6-availability status=resolved-conflict",
             "GPT-5.6 Sol",
